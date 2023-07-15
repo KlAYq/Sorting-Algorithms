@@ -15,6 +15,7 @@ int main()
     int n = 10;
     int a[n];
     GenerateData(a, n, 0);
-    mergeSort(a, 0, n-1);
+    //mergeSort(a, 0, n-1);
+    flashSort(a, n);
     printData(a, n);
 }

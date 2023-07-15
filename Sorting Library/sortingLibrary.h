@@ -2,3 +2,4 @@
 #include "heapSort.cpp"
 #include "mergeSort.cpp"
 #include "shakerSort.cpp"
+#include "flashSort.cpp"
