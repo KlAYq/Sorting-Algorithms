@@ -1,7 +1,3 @@
-#include <iostream>
-
-using namespace std;
-
 /**
  * Bubble_sort
  * Average case: O(n^2)

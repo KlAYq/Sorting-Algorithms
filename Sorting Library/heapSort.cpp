@@ -1,7 +1,3 @@
-#include <iostream>
-
-using namespace std;
-
 //This function heapify a subtree with node i
 void heapify(int a[], int n, int i) {
     //Initialize largest as root

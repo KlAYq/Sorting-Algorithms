@@ -1,7 +1,3 @@
-#include <iostream>
-
-using namespace std;
-
 /**
  * Shaker Sort
  * Average Case: O(n^2)
