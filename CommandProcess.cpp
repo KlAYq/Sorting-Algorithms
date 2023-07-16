@@ -1,14 +1,34 @@
 // C++ program to illustrate command line arguments
 #include <iostream>
+#include <bits/stdc++.h>
 #include <cstdlib>
 #include <cstring>
 #include <fstream>
-#include "DataGenerator.cpp"
+
+#include "Sorting Library/sortingLibrary.h"   
 using namespace std;
 
-void sort_with_timer(int a[], int n, string algorithm);
+typedef void(*sortTypePtr)(int*, int);
 
-void sort_with_counter(int a[], int n, string algorithm);
+sortTypePtr getSort(string sortName)
+{
+    if (sortName == "bubble-sort")
+    {
+        cout << "called bubble-sort func\n";
+        return &bubble_sort;
+    }
+    // else if...
+}
+
+void sort_with_timer(int a[], int n, string algorithm)
+{
+    return;
+}
+
+void sort_with_counter(int a[], int n, string algorithm)
+{
+    return;
+}
 
 void commandOne(string algorithm, string input_file, string output_param) {
     fstream infile (input_file);
@@ -23,6 +43,14 @@ void commandOne(string algorithm, string input_file, string output_param) {
     for (int i = 0; i < n; i++) {
         infile >> a[i];
     }
+    void (*sortingAlgorithm)(int*, int) = getSort(algorithm); // using this template for get pointer to sort fuction;
+    sortingAlgorithm(a, n);
+    cout << "result:" << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << a[i] << " ";
+    }
+    cout << endl;
 
     cout << "ALGORITHM MODE" << endl;
     cout << "Algorithm: " << algorithm << endl;
@@ -61,33 +89,18 @@ void commandThree(string algorithm, int input_size, string output_param) {
     cout << "Comparisons (if required): " << endl;
 }
 
-void commandTwo(string algorithm, int input_size, string input_order, string input_param);
+void commandTwo(string algorithm, int input_size, string input_order, string input_param)
+{
+    return;
+}
 
-void commandFour(string algo1, string algo2, string input_file);
+void commandFour(string algo1, string algo2, string input_file)
+{
+    return;
+}
 
-void commandFive(string algo1, string algo2, int input_size, string input_order);
-
-int main(int argc, char* argv[]) {
-	if (argc == 5) {
-        if (strcmp(argv[1], "-a") == 0) {
-            if (isdigit(argv[3][0]))
-                commandThree(argv[2], atoi(argv[3]), argv[4]);
-            else
-                commandOne(argv[2], argv[3], argv[4]);
-        }
-        else if (strcmp(argv[1], "-c") == 0) {
-            commandFour(argv[2], argv[3], argv[4]);
-        }
-    }
-    else if (argc == 6) {
-        if (strcmp(argv[1], "-a") == 0) {
-            commandTwo(argv[2], atoi(argv[3]), argv[4], argv[5]);
-        }
-        else if (strcmp(argv[1], "-c") == 0) {
-            commandFive(argv[2], argv[3], atoi(argv[4]), argv[5]);
-        }
-    }
-
-    return 0;
+void commandFive(string algo1, string algo2, int input_size, string input_order)
+{
+    return;
 }
 
