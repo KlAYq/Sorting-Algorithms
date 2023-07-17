@@ -30,48 +30,40 @@ void sort_with_timer(int a[], int n, string algorithm, double &time)
         bubble_sort(a, n);
     }
     else if (algorithm == "insertion-sort"){
-        return;
+    
     }
     else if (algorithm == "shaker-sort"){
         shaker_sort(a, n);
-        return;
     }
     else if (algorithm == "selection-sort"){
-        return;
     }
     else if (algorithm == "heap-sort"){
         heapSort(a, n);
-        return;
     }
     else if (algorithm == "quick-sort"){
-        return;
     }
     else if (algorithm == "merge-sort"){
-        mergeSort(a, 0, n - 1);
-        return;
+        merge_sort(a, 0, n - 1);
     }
     else if (algorithm == "radix-sort"){
-        return;
     }
     else if (algorithm == "counting-sort"){
-        return;
     }  
     else if (algorithm == "shell-sort"){
-        return;
     }
     else if (algorithm == "flash-sort"){
         flashSort(a, n);
-        return;
     }
 
     end = clock();
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void sort_with_counter(int a[], int n, string algorithm, int &comparison_count)
+void sort_with_counter(int a[], int n, string algorithm, long long &comparison_count)
 {
     if (algorithm == "bubble-sort"){
         bubble_sort_with_counter(a, n, comparison_count);
+        return;
     }
     else if (algorithm == "insertion-sort"){
         return;
@@ -91,6 +83,7 @@ void sort_with_counter(int a[], int n, string algorithm, int &comparison_count)
         return;
     }
     else if (algorithm == "merge-sort"){
+        merge_sort_with_counter(a, 0, n-1, comparison_count);
         return;
     }
     else if (algorithm == "radix-sort"){
@@ -103,6 +96,7 @@ void sort_with_counter(int a[], int n, string algorithm, int &comparison_count)
         return;
     }
     else if (algorithm == "flash-sort"){
+        flash_sort_with_counter(a, n, comparison_count);
         return;
     }
 }
@@ -228,7 +222,7 @@ void commandFour(string algo1, string algo2, string input_file)
     cout << "COMPARE MODE" << endl;
     cout << "Algorithm: " << algo1 << " | " << algo2;
 
-    int a[50000], n;
+    int a[500000], n;
     readFromFile(a, n, input_file);
 
     cout << "Input file: " << input_file << endl;
@@ -238,7 +232,7 @@ void commandFour(string algo1, string algo2, string input_file)
 
     //Sorting analysis
     double time1, time2;
-    int count1, count2;
+    long long count1 = 0, count2 = 0;
     sort_with_timer(a, n, algo1, time1);
     readFromFile(a, n, input_file);
 
@@ -270,7 +264,7 @@ void commandFive(string algo1, string algo2, int input_size, string input_order)
     cout << "---------------------------" << endl;
 
     double time1, time2;
-    int count1, count2;
+    long long count1 = 0, count2 = 0;
     string input_file = "input.txt";
 
     sort_with_timer(a, n, algo1, time1);

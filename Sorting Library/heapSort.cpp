@@ -38,7 +38,7 @@ void heapSort(int a[], int n) {
 }
 
 //Heapify with comparison counter
-void heapify_with_counter(int a[], int n, int i, int &comparison_count) {
+void heapify_with_counter(int a[], int n, int i, long long &comparison_count) {
     //Initialize largest as root
     int largest = i;
 
@@ -63,7 +63,7 @@ void heapify_with_counter(int a[], int n, int i, int &comparison_count) {
 }
 
 //Heap sort with comparison counter
-void heapSort_with_counter(int a[], int n, int &comparison_count) {
+void heapSort_with_counter(int a[], int n, long long &comparison_count) {
     comparison_count = 0;
     //Build max heap
     for (int  i = (n - 2) / 2; i >= 0; i--)

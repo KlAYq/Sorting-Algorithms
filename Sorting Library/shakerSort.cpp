@@ -38,7 +38,7 @@ void shaker_sort(int a[], int n) {
     } while (left <= right);
 }
 
-void shaker_sort_with_counter(int a[], int n, int &comparision_count) {
+void shaker_sort_with_counter(int a[], int n, long long &comparision_count) {
     comparision_count = 0;
     int left = 1, right = n - 1, k = 1; 
     do {
