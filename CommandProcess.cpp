@@ -3,6 +3,7 @@
 #include <bits/stdc++.h>
 #include <cstdlib>
 #include <cstring>
+#include <chrono>
 //#include <fstream>
 //#include <ctime>
 
@@ -25,12 +26,12 @@ void sort_with_timer(int a[], int n, string algorithm, double &time)
 {
     clock_t start, end;
     start = clock();
-
+    //std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
     if (algorithm == "bubble-sort"){
         bubble_sort(a, n);
     }
     else if (algorithm == "insertion-sort"){
-    
+        insertion_sort(a, n);
     }
     else if (algorithm == "shaker-sort"){
         shaker_sort(a, n);
@@ -46,8 +47,10 @@ void sort_with_timer(int a[], int n, string algorithm, double &time)
         merge_sort(a, 0, n - 1);
     }
     else if (algorithm == "radix-sort"){
+        radix_sort(a, n);
     }
     else if (algorithm == "counting-sort"){
+        counting_sort(a, n);
     }  
     else if (algorithm == "shell-sort"){
     }
@@ -57,6 +60,9 @@ void sort_with_timer(int a[], int n, string algorithm, double &time)
 
     end = clock();
     time = (double)(end - start) / CLOCKS_PER_SEC;
+    // std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    // std::chrono::duration<double> duration = end - start;
+    // time = duration.count();
 }
 
 void sort_with_counter(int a[], int n, string algorithm, long long &comparison_count)
@@ -66,6 +72,7 @@ void sort_with_counter(int a[], int n, string algorithm, long long &comparison_c
         return;
     }
     else if (algorithm == "insertion-sort"){
+        insertion_sort_with_counter(a, n, comparison_count);
         return;
     }
     else if (algorithm == "shaker-sort"){
@@ -87,9 +94,11 @@ void sort_with_counter(int a[], int n, string algorithm, long long &comparison_c
         return;
     }
     else if (algorithm == "radix-sort"){
+        radix_sort_with_counter(a, n, comparison_count);
         return;
     }
     else if (algorithm == "counting-sort"){
+        counting_sort_with_counter(a, n, comparison_count);
         return;
     }  
     else if (algorithm == "shell-sort"){

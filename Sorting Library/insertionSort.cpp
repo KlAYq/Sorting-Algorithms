@@ -29,7 +29,7 @@ void insertion_sort_with_counter(int a[], int n, long long &comparison_count)
     {
         int key = a[i];
         int j = i - 1;
-        while (++++comparison_count && j >= 0 && a[j] > key)
+        while (++comparison_count && j >= 0 && ++comparison_count && a[j] > key)
         {
             a[j + 1] = a[j];
             j--;

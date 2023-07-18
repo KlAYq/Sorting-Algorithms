@@ -57,11 +57,11 @@ void radix_sort_with_counter(int a[], int n, long long &comparison_count)
     comparison_count = 0;
     int max = a[0];
     for (int i = 0; ++comparison_count && i < n; i++)
-        if (a[i] > max)
+        if (++comparison_count && a[i] > max)
             max = a[i];
 
     int num_nums = 0;
-    while ( ++comparison_count && max > 0)
+    while (++comparison_count && max > 0)
     {
         num_nums++;
         max /= 10;

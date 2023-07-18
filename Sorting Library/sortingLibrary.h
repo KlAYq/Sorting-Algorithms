@@ -3,3 +3,6 @@
 #include "mergeSort.cpp"
 #include "shakerSort.cpp"
 #include "flashSort.cpp"
+#include "countingSort.cpp"
+#include "insertionSort.cpp"
+#include "radixSort.cpp"
