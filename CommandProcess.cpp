@@ -39,7 +39,7 @@ void sort_with_timer(int a[], int n, string algorithm, double &time)
     else if (algorithm == "selection-sort"){
     }
     else if (algorithm == "heap-sort"){
-        heapSort(a, n);
+        heap_sort(a, n);
     }
     else if (algorithm == "quick-sort"){
     }
@@ -83,7 +83,7 @@ void sort_with_counter(int a[], int n, string algorithm, long long &comparison_c
         return;
     }
     else if (algorithm == "heap-sort"){
-        heapSort_with_counter(a, n, comparison_count);
+        heap_sort_with_counter(a, n, comparison_count);
         return;
     }
     else if (algorithm == "quick-sort"){
@@ -171,8 +171,6 @@ string normalizeDataType(string input_order)
 void commandOne(string algorithm, string input_file, string output_param) 
 {
     int a[500000], n;
-
-
     // void (*sortingAlgorithm)(int*, int) = getSort(algorithm); // using this template for get pointer to sort fuction;
     // sortingAlgorithm(a, n);
 
@@ -202,9 +200,40 @@ void commandOne(string algorithm, string input_file, string output_param)
         sort_with_counter(a, n, algorithm, count);
         cout << "Comparisons: " << count <<  endl;     
     }
+}
+
+void commandTwo(string algorithm, int input_size, string input_order, string input_param)
+{
+    cout << "ALGORITHM MODE" << endl;
+    cout << "Algorithm: " << algorithm << endl;
+    cout << "Input size: " << input_size << endl;
+    cout << "Input order: " << normalizeDataType(input_order) << endl;
+    cout << "---------------------------" << endl;
+
+    bool comp = true, timer = true;
+    if (input_param == "-comp")
+        timer = false;
+    else if (input_param == "-time")
+        comp = false;
     
-    
-    
+    int a[input_size];
+    GenerateData(a, input_size, getDataType(input_order));
+    writeToFile(a, input_size, "input.txt");
+    if (timer)
+    {
+        double time = 0;
+        readFromFile(a, input_size, "input.txt"); 
+        sort_with_timer(a, input_size, algorithm, time);
+        cout << "Running time: " << time << endl;   
+    }
+    if (comp)
+    {
+        long long count = 0;
+        readFromFile(a, input_size, "input.txt");
+        sort_with_counter(a, input_size, algorithm, count);
+        cout << "Comparisons: " << count <<  endl;     
+    }
+    cout << endl;
 }
 
 void commandThree(string algorithm, int input_size, string output_param) {
@@ -306,41 +335,6 @@ void commandThree(string algorithm, int input_size, string output_param) {
     cout << endl;
 }
 
-void commandTwo(string algorithm, int input_size, string input_order, string input_param)
-{
-    cout << "ALGORITHM MODE" << endl;
-    cout << "Algorithm: " << algorithm << endl;
-    cout << "Input size: " << input_size << endl;
-    cout << "Input order: " << normalizeDataType(input_order) << endl;
-    cout << "---------------------------" << endl;
-
-    bool comp = true, timer = true;
-    if (input_param == "-comp")
-        timer = false;
-    else if (input_param == "-time")
-        comp = false;
-    
-    int a[input_size];
-    GenerateData(a, input_size, getDataType(input_order));
-    writeToFile(a, input_size, "input.txt");
-    if (timer)
-    {
-        double time = 0;
-        readFromFile(a, input_size, "input.txt"); 
-        sort_with_timer(a, input_size, algorithm, time);
-        cout << "Running time: " << time << endl;   
-    }
-    if (comp)
-    {
-        long long count = 0;
-        readFromFile(a, input_size, "input.txt");
-        sort_with_counter(a, input_size, algorithm, count);
-        cout << "Comparisons: " << count <<  endl;     
-    }
-    cout << endl;
-
-}
-
 void commandFour(string algo1, string algo2, string input_file)
 {
     cout << "COMPARE MODE" << endl;
@@ -392,21 +386,16 @@ void commandFive(string algo1, string algo2, int input_size, string input_order)
     string input_file = "input.txt";
 
     sort_with_timer(a, n, algo1, time1);
-    cout << "Check" << endl;
     readFromFile(a, n, input_file);
-    cout << "Check" << endl;
 
     sort_with_counter(a, n, algo1, count1);
     readFromFile(a, n, input_file);
-    cout << "Check" << endl;
 
     sort_with_timer(a, n, algo2, time2);
     readFromFile(a, n, input_file);
-    cout << "Check" << endl;
 
     sort_with_counter(a, n, algo2, count2);
     readFromFile(a, n, input_file);
-    cout << "Check" << endl;
 
     //Print
     cout << "Running time: " << time1 << " | " << time2 << endl;

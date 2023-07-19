@@ -4,14 +4,6 @@
 //#include "Sorting Library/sortingLibrary.h"   
 #include "CommandProcess.cpp"
 
-void printData(int a[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        cout << a[i] << " ";
-    }
-}
-
 int main(int argc, char* argv[]) {
 	if (argc == 5) {
         if (strcmp(argv[1], "-a") == 0) {
@@ -32,6 +24,8 @@ int main(int argc, char* argv[]) {
             commandFive(argv[2], argv[3], atoi(argv[4]), argv[5]);
         }
     }
+    else
+        cout << "Unkown command!";
 
     return 0;
 }
