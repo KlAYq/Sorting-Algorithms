@@ -1,10 +1,9 @@
 // C++ program to illustrate command line arguments
 #include <iostream>
-#include <bits/stdc++.h>
 #include <cstdlib>
 #include <cstring>
 #include <chrono>
-//#include <fstream>
+#include <fstream>
 //#include <ctime>
 
 #include "Sorting Library/sortingLibrary.h"  
@@ -22,11 +21,9 @@ sortTypePtr getSort(string sortName)
     // else if...
 }
 
-void sort_with_timer(int a[], int n, string algorithm, double &time)
+void sort_with_timer(int a[], int n, string algorithm, auto &duration)
 {
-    clock_t start, end;
-    start = clock();
-    //std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     if (algorithm == "bubble-sort"){
         bubble_sort(a, n);
     }
@@ -55,11 +52,11 @@ void sort_with_timer(int a[], int n, string algorithm, double &time)
     else if (algorithm == "shell-sort"){
     }
     else if (algorithm == "flash-sort"){
-        flashSort(a, n);
+        flash_sort(a, n);
     }
 
-    end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
+    auto end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     // std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     // std::chrono::duration<double> duration = end - start;
     // time = duration.count();

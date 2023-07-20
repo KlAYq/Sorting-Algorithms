@@ -1,6 +1,6 @@
 void merge(int arr[], int left, int mid, int right)
 {
-    int tempArr[right - left + 1]; // will fix later
+    int* tempArr = new int[right - left + 1]; // will fix later
     int tempIndex = 0;
     int index1 = left, index2 = mid+1; 
     while (index1 <= mid && index2 <= right)
@@ -18,6 +18,8 @@ void merge(int arr[], int left, int mid, int right)
     
     for (tempIndex = 0; tempIndex < right - left + 1; tempIndex++)
         arr[tempIndex + left] = tempArr[tempIndex];
+    
+    delete[] tempArr;
 }   
 
 void merge_sort(int arr[], int left, int right)

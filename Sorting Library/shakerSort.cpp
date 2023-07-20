@@ -1,5 +1,5 @@
 /**
- * Shaker Sort (This version is taken from Dr. Nguyen Ngoc Thao's lecture notes)
+ * Shaker Sort (Referenced from Dr. Nguyen Ngoc Thao's lecture notes)
  * Average Case: O(n^2)
  * Best Case: O(n)
  * Worst Case: O(n^2)
@@ -7,71 +7,54 @@
  */
 void shaker_sort(int a[], int n)
 {
-    int left = 1, right = n - 1, k = 1;
-    do
+    int left = 0, right = n - 1, k = 0;
+    while (left < right)
     {
-        // loop from left to right same as
-        // the bubble sort
-        for (int j = left; j <= right; j++)
+        for (int i = left; i < right; i++)
         {
-            if (a[j - 1] > a[j])
+            if (a[i] > a[i + 1])
             {
-                swap(a[j - 1], a[j]);
-                k = j; // Save the position of the last exchange
+                swap(a[i], a[i + 1]);
+                k = i;
             }
-        } // Larger elements to the end
+        }
+        right = k;
 
-        // As all the items after k is in correct order,
-        // move the 'right' to k - 1
-        right = k - 1;
-
-        // from right to left, doing the
-        // same comparison as in the previous stage
-        for (int j = right; j >= left; j--)
+        for (int i = right; i > left; i--)
         {
-            if (a[j - 1] > a[j])
+            if (a[i] < a[i - 1])
             {
-                swap(a[j - 1], a[j]);
-                k = j; // Save the position of the last exchange
+                swap(a[i], a[i - 1]);
+                k = i;
             }
-        } // Smaller elements to the top
-
-        // As all the items before k is in correct order,
-        // move the 'left' to k + 1
-        left = k + 1;
-
-    } while (left <= right);
+        }
+        left = k;
+    }
 }
 
 void shaker_sort_with_counter(int a[], int n, long long &comparision_count)
 {
-    comparision_count = 0;
-    int left = 1, right = n - 1, k = 1;
-    do
+    int left = 0, right = n - 1, k = 0;
+    while (++comparision_count && left < right)
     {
-        // loop from left to right same as the bubble sort
-        for (int j = left; ++comparision_count && j <= right; j++)
+        for (int i = left; ++comparision_count && i < right; i++)
         {
-            if (++comparision_count && a[j - 1] > a[j])
+            if (++comparision_count && a[i] > a[i + 1])
             {
-                swap(a[j - 1], a[j]);
-                k = j; // Save the position of the last exchange
+                swap(a[i], a[i + 1]);
+                k = i;
             }
-        } // Larger elements to the end
+        }
+        right = k;
 
-        right = k - 1; // As all the items after k is in correct order, move the right to k - 1
-
-        // From right to left, doing the same comparison as in the previous stage
-        for (int j = right; ++comparision_count && j >= left; j--)
+        for (int i = right; ++comparision_count && i > left; i--)
         {
-            if (++comparision_count && a[j - 1] > a[j])
+            if (++comparision_count && a[i] < a[i - 1])
             {
-                swap(a[j - 1], a[j]);
-                k = j; // Save the position of the last exchange
+                swap(a[i], a[i - 1]);
+                k = i;
             }
-        } // Smaller elements to the top
-
-        left = k + 1; // As all the items before k is in correct order, move the left to k + 1
-
-    } while (++comparision_count && left <= right);
+        }
+        left = k;
+    }
 }

@@ -15,7 +15,7 @@ void insertion_sort(int a[], int low, int high)
 
 // Flashsort implementation
 // REF: https://codelearn.io/sharing/flash-sort-thuat-toan-sap-xep-than-thanh 
-void flashSort(int a[], int n)
+void flash_sort(int a[], int n)
 {
     // Minimum and maximum values in the input array
     int minVal = a[0];
@@ -30,7 +30,7 @@ void flashSort(int a[], int n)
     }
     // Creating the distribution count array
     int m = 0.45 * n;
-    int count[m];
+    int* count = new int[m];
     fill(count, count + m, 0);
     int coefficient = (m-1)/double(maxVal - minVal);
 
@@ -69,6 +69,7 @@ void flashSort(int a[], int n)
 			++pass;
 		}
 	}
+    delete[] count;
     insertion_sort(a, 0, n-1);
 }
 
