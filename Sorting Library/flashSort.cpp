@@ -105,7 +105,7 @@ void flash_sort_with_counter(int a[], int n, long long& comparison_count)
     }
     // Creating the distribution count array
     int m = 0.45 * n;
-    int count[m];
+    int* count = new int[m];
     fill(count, count + m, 0);
     // for (int i = 0; ++comparison_count && i < m; i++)
     //     count[m] = 0;
@@ -146,5 +146,6 @@ void flash_sort_with_counter(int a[], int n, long long& comparison_count)
 			++pass;
 		}
 	}
+    delete[] count;
     insertion_sort_with_counter(a, 0, n-1, comparison_count);
 }

@@ -5,16 +5,23 @@
 
 int main()
 {
-    int a[500000], n = 500000;
-    GenerateRandomData(a, n);
-    auto start = std::chrono::high_resolution_clock::now();
-    flash_sort(a, n);
-    auto end = std::chrono::high_resolution_clock::now();
-    double duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    int n = 500000;
+    int* a = new int[n];
+    GenerateData(a, n, 0);
+
+    long long comparision_count = 0;
+    clock_t start = clock();
+
+    quick_sort_with_counter(a, 0, n - 1, comparision_count);
+
+    clock_t end = clock();
+    double duration = (double)(end - start) / CLOCKS_PER_SEC;
 
     cout << "Running time: " << duration << endl;
-    for (int i = 50; i < 100; i++)
+    cout << "Comparisions: " << comparision_count << endl;
+    for (int i = n - 50; i < n; i++)
         cout << a[i] << " ";
     
+    delete[] a;
     return 0;
 }

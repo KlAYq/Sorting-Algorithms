@@ -35,7 +35,7 @@ void merge_sort(int arr[], int left, int right)
 
 void merge_with_counter(int arr[], int left, int mid, int right, long long& comparison_count)
 {
-    int tempArr[right - left + 1]; // will fix later
+    int* tempArr = new int[right - left + 1]; // will fix later
     int tempIndex = 0;
     int index1 = left, index2 = mid+1; 
     while (++comparison_count && index1 <= mid && ++comparison_count && index2 <= right)
@@ -51,8 +51,9 @@ void merge_with_counter(int arr[], int left, int mid, int right, long long& comp
     while (++comparison_count && index2 <= right)
         tempArr[tempIndex++] = arr[index2++];
     
-    for (tempIndex = left; tempIndex < right - left + 1; tempIndex++)
+    for (tempIndex = 0; tempIndex < right - left + 1; tempIndex++)
         arr[tempIndex + left] = tempArr[tempIndex];
+    delete[] tempArr;
 }   
 
 void merge_sort_with_counter(int arr[], int left, int right, long long& comparison_count)

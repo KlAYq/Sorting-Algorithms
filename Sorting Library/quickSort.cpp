@@ -1,27 +1,31 @@
-#include <iostream>
-using namespace std;
-
-void Swap(int &a, int &b)
+int findMid(int a[], int left, int right)
 {
-	int t;
-	t = a;
-	a = b;
-	b = t;
+	int mid = (left + right) / 2;
+	if (a[mid] < a[left])
+		swap(a[mid], a[left]);
+	if (a[right] < a[mid])
+		swap(a[mid], a[right]);
+	if (a[mid] < a[left])
+		swap(a[mid], a[left]);
+
+	swap(a[mid], a[left]);
+	return mid;
 }
 
 int partition(int a[], int left, int right)
 {
+	findMid(a, left, right);
 	int pivot = a[left];
 	int k = right;
 	for (int i = right; i > left; i--)
 	{
 		if (a[i] > pivot)
 		{
-			Swap(a[i], a[k]);
+			swap(a[i], a[k]);
 			k--;
 		}
 	}
-	Swap(a[k], a[left]);
+	swap(a[k], a[left]);
 	return k;
 }
 
@@ -35,19 +39,36 @@ void quick_sort(int a[], int left, int right)
 	}
 }
 
+/*===========================================================================*/
+
+int findMid_with_counter(int a[], int left, int right, long long &comparision_count)
+{
+	int mid = (left + right) / 2;
+	if (++comparision_count && a[mid] < a[left])
+		swap(a[mid], a[left]);
+	if (++comparision_count && a[right] < a[mid])
+		swap(a[mid], a[right]);
+	if (++comparision_count && a[mid] < a[left])
+		swap(a[mid], a[left]);
+
+	swap(a[mid], a[left]);
+	return mid;
+}
+
 int partition_with_counter(int a[], int left, int right, long long &comparision_count)
 {
+	findMid_with_counter(a, left, right, comparision_count);
 	int pivot = a[left];
 	int k = right;
 	for (int i = right; ++comparision_count && i > left; i--)
 	{
 		if (++comparision_count && a[i] > pivot)
 		{
-			Swap(a[i], a[k]);
+			swap(a[i], a[k]);
 			k--;
 		}
 	}
-	Swap(a[k], a[left]);
+	swap(a[k], a[left]);
 	return k;
 }
 
