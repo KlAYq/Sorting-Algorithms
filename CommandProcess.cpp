@@ -9,21 +9,9 @@
 #include "Sorting Library/sortingLibrary.h"  
 using namespace std;
 
-typedef void(*sortTypePtr)(int*, int);
-
-sortTypePtr getSort(string sortName)
+void sort_with_timer(int a[], int n, string algorithm, double &time)
 {
-    if (sortName == "bubble-sort")
-    {
-        cout << "called bubble-sort func\n";
-        return &bubble_sort;
-    }
-    // else if...
-}
-
-void sort_with_timer(int a[], int n, string algorithm, auto &duration)
-{
-    auto start = std::chrono::high_resolution_clock::now();
+    clock_t start = clock();
     if (algorithm == "bubble-sort"){
         bubble_sort(a, n);
     }
@@ -34,11 +22,13 @@ void sort_with_timer(int a[], int n, string algorithm, auto &duration)
         shaker_sort(a, n);
     }
     else if (algorithm == "selection-sort"){
+        selection_sort(a, n);
     }
     else if (algorithm == "heap-sort"){
         heap_sort(a, n);
     }
     else if (algorithm == "quick-sort"){
+        quick_sort(a, 0, n -1);
     }
     else if (algorithm == "merge-sort"){
         merge_sort(a, 0, n - 1);
@@ -50,20 +40,22 @@ void sort_with_timer(int a[], int n, string algorithm, auto &duration)
         counting_sort(a, n);
     }  
     else if (algorithm == "shell-sort"){
+        shell_sort(a, n);
     }
     else if (algorithm == "flash-sort"){
         flash_sort(a, n);
     }
 
-    auto end = std::chrono::high_resolution_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    clock_t end = clock();
+    time = (double)(end-start) / CLOCKS_PER_SEC;
     // std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    // std::chrono::duration<double> duration = end - start;
-    // time = duration.count();
+    // std::chrono::time<double> time = end - start;
+    // time = time.count();
 }
 
 void sort_with_counter(int a[], int n, string algorithm, long long &comparison_count)
 {
+    comparison_count = 0;
     if (algorithm == "bubble-sort"){
         bubble_sort_with_counter(a, n, comparison_count);
         return;
@@ -77,6 +69,7 @@ void sort_with_counter(int a[], int n, string algorithm, long long &comparison_c
         return;
     }
     else if (algorithm == "selection-sort"){
+        selection_sort_with_counter(a, n, comparison_count);
         return;
     }
     else if (algorithm == "heap-sort"){
@@ -84,6 +77,7 @@ void sort_with_counter(int a[], int n, string algorithm, long long &comparison_c
         return;
     }
     else if (algorithm == "quick-sort"){
+        quick_sort_with_counter(a, 0, n - 1, comparison_count);
         return;
     }
     else if (algorithm == "merge-sort"){
@@ -99,6 +93,7 @@ void sort_with_counter(int a[], int n, string algorithm, long long &comparison_c
         return;
     }  
     else if (algorithm == "shell-sort"){
+        shell_sort_with_counter(a, n, comparison_count);
         return;
     }
     else if (algorithm == "flash-sort"){

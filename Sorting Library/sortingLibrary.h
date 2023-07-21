@@ -1,4 +1,5 @@
 #include "bubbleSort.cpp"
+#include "selectionSort.cpp"
 #include "heapSort.cpp"
 #include "mergeSort.cpp"
 #include "shakerSort.cpp"
@@ -6,3 +7,5 @@
 #include "countingSort.cpp"
 #include "insertionSort.cpp"
 #include "radixSort.cpp"
+#include "shellSort.cpp"
+#include "quickSort.cpp"
