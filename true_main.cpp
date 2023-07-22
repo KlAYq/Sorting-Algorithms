@@ -2,37 +2,45 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <chrono>
+#include <string>
+#include <cstring>
 #include "DataGenerator.cpp"
 #include "Sorting Library/sortingLibrary.h"
 //#include "CommandProcess.cpp"
 
 using namespace std;
 
-int main(){
+void printSortingResults(int size, int type){
 	cout << "Begin Sorting..." << endl;
-	int n = 100000;
+	int n = size;
 	long long cmp_cnt = 0;
 	double duration = 0;
 	clock_t start, end;
 	cout << "Data size: " << n << endl;
-	ofstream data("DATA_10K_RAN.txt");
+	string name = "DAT/DATA_" + to_string(n/100) + "_" + to_string(type) + ".txt",
+		   output = "RES/RES_" + to_string(n/100) + "_" + to_string(type) + ".csv";
+	ofstream data(name);
 	int *a = new int[n];
-	GenerateData(a,n,0);
+	GenerateData(a,n,type);
 	for (int i = 0; i < n; i++)
 		data << a[i] << " ";
 	data.close();
-	ifstream reading("DATA_10K_RAN.txt");
-	ofstream result("RES_10K_RAN.txt");
+	ifstream reading(name);
+	ofstream result(output);
 	
 	start = clock();
 	selection_sort(a,n);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	selection_sort_with_counter(a, n, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Selection Sort done!" << endl;
 	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -40,12 +48,16 @@ int main(){
 	start = clock();
 	insertion_sort(a,n);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	insertion_sort_with_counter(a, n, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Insertion Sort done!" << endl;
 	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -53,12 +65,16 @@ int main(){
 	start = clock();
 	bubble_sort(a,n);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	bubble_sort_with_counter(a, n, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Bubble Sort done!" << endl;
 	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -66,14 +82,16 @@ int main(){
 	start = clock();
 	shaker_sort(a,n);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	shaker_sort_with_counter(a, n, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Shaker Sort done!" << endl;
 	
-	result << endl;
-	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -81,12 +99,16 @@ int main(){
 	start = clock();
 	shell_sort(a,n);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	shell_sort_with_counter(a, n, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Shell Sort done!" << endl;
 	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -94,12 +116,16 @@ int main(){
 	start = clock();
 	heap_sort(a,n);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	heap_sort_with_counter(a, n, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << " " << duration << endl; result.flush();
 	
 	cout << "Heap Sort done!" << endl;
 	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -107,12 +133,16 @@ int main(){
 	start = clock();
 	merge_sort(a,0,n-1);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	merge_sort_with_counter(a, 0, n - 1, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Merge Sort done!" << endl;
 	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -120,14 +150,16 @@ int main(){
 	start = clock();
 	quick_sort(a,0,n-1);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	quick_sort_with_counter(a, 0, n - 1, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Quick Sort done!" << endl;
 	
-	result << endl;
-	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -135,12 +167,16 @@ int main(){
 	start = clock();
 	counting_sort(a,n);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	counting_sort_with_counter(a, n, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Counting Sort done!" << endl;
 	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -148,12 +184,16 @@ int main(){
 	start = clock();
 	radix_sort(a,n);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	radix_sort_with_counter(a, n, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Radix Sort done!" << endl;
 	
+	reading.seekg(0, ios::beg);
 	for (int i = 0; i < n; i++)
 		reading >> a[i];
 	
@@ -161,14 +201,26 @@ int main(){
 	start = clock();
 	flash_sort(a,n);
 	end = clock();
+	reading.seekg(0, ios::beg);
+	for (int i = 0; i < n; i++)
+		reading >> a[i];
 	flash_sort_with_counter(a, n, cmp_cnt);
 	duration = (double)(end - start) / CLOCKS_PER_SEC;
-	result << cmp_cnt << " " << duration << endl;
+	result << cmp_cnt << "," << duration << endl; result.flush();
 	
 	cout << "Flash Sort done!" << endl;
+
+	result << endl;
 	
 	reading.close();
 	result.close();
 	delete[] a;
+}
+
+int main(){
+	int data_limit = [10000;30000;50000;100000;300000;500000];
+	for (int i = 0; i < 4; i++){
+		printSortingResults(data_limit[0],i);
+	}
 	return 0;
 }
