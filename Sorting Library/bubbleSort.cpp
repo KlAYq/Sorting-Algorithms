@@ -18,8 +18,8 @@ void bubble_sort(int a[], int n) {
 
 void bubble_sort_with_counter(int a[], int n, long long &comparison_count) {
     comparison_count = 0;   //Count the number of element comparisons.
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i; j++) {
+    for (int i = 0;++comparison_count && i < n - 1; i++) {
+        for (int j = 0;++comparison_count && j < n - i; j++) {
             //If two consecutive elements are not in the correct order, swap them.
             if (++comparison_count && a[j] > a[j + 1])
                 swap(a[j], a[j + 1]);
