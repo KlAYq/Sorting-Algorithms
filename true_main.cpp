@@ -218,7 +218,7 @@ void printSortingResults(int size, int type){
 }
 
 int main(){
-	int data_limit = {10000,30000,50000,100000,300000,500000};
+	int data_limit[] = {10000,30000,50000,100000,300000,500000};
 	for (int i = 0; i < 4; i++){
 		printSortingResults(data_limit[0],i);
 	}
