@@ -97,7 +97,7 @@ void flash_sort_with_counter(int a[], int n, long long& comparison_count)
     int maxVal = a[0];
 
     // Finding the minimum and maximum values
-    for (int i = 1; i < n; i++) {
+    for (int i = 1;++comparison_count && i < n; i++) {
         if (++comparison_count && a[i] < minVal)
             minVal = a[i];
         if (++comparison_count && a[i] > maxVal)
@@ -127,7 +127,7 @@ void flash_sort_with_counter(int a[], int n, long long& comparison_count)
 	int k = m - 1;
 	int t = 0;
 	int flash;
-	while (pass < n - 1)
+	while (++comparison_count && pass < n - 1)
 	{
 		while (++comparison_count && j > count[k] - 1)
 		{

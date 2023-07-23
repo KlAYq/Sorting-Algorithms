@@ -51,7 +51,7 @@ void merge_with_counter(int arr[], int left, int mid, int right, long long& comp
     while (++comparison_count && index2 <= right)
         tempArr[tempIndex++] = arr[index2++];
     
-    for (tempIndex = 0; tempIndex < right - left + 1; tempIndex++)
+    for (tempIndex = 0;++comparison_count && tempIndex < right - left + 1; tempIndex++)
         arr[tempIndex + left] = tempArr[tempIndex];
     delete[] tempArr;
 }   

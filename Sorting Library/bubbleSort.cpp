@@ -46,13 +46,12 @@ void optimized_bubble_sort(int a[], int n)
     }
 }
 
-void optimized_bubble_sort_with_counter(int a[], int n)
+void optimized_bubble_sort_with_counter(int a[], int n, long long &comparison_count)
 {
-    int comparison_count = 0;
     bool swapped;   //It is used to check if there was any swap in the last iteration.
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0;++comparison_count && i < n - 1; i++) {
         swapped = false;
-        for (int j = 0; j < n - i - 1; j++) {
+        for (int j = 0;++comparison_count && j < n - i - 1; j++) {
             if (++comparison_count && a[j] > a[j + 1]) {
                 swap(a[j], a[j + 1]);
                 swapped = true;
@@ -61,7 +60,7 @@ void optimized_bubble_sort_with_counter(int a[], int n)
   
         // If no two elements were swapped
         // by inner loop, then break
-        if (swapped == false)
+        if (++comparison_count && swapped == false)
             break;
     }
 }
