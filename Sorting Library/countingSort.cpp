@@ -35,7 +35,7 @@ void counting_sort_with_counter(int a[], int n, long long &comparison_count)
 
     int max = a[0];
     for (int i = 1; ++comparison_count && i < n; i++)
-        if (a[i] > max)
+        if (++comparison_count && a[i] > max)
             max = a[i];
 
     int *countArr = new int [max+1] {0};
