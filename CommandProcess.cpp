@@ -168,6 +168,7 @@ void commandOne(string algorithm, string input_file, string output_param)
 
     cout << "ALGORITHM MODE" << endl;
     cout << "Algorithm: " << algorithm << endl;
+    readFromFile(a, n, input_file);
     cout << "Input file: " << input_file << endl;
     cout << "Input size: " << n << endl;
     cout << "---------------------------" << endl;
@@ -181,7 +182,6 @@ void commandOne(string algorithm, string input_file, string output_param)
     if (timer)
     {
         double time;
-        readFromFile(a, n, input_file);
         sort_with_timer(a, n, algorithm, time);
         cout << "Running time: " << time << endl;   
     }
