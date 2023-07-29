@@ -1,7 +1,5 @@
 #include <iostream>
-// #include <bits/stdc++.h>
 #include "DataGenerator.cpp"
-// #include "Sorting Library/sortingLibrary.h"
 #include "CommandProcess.cpp"
 
 int main(int argc, char *argv[])
