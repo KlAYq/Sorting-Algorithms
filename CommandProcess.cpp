@@ -330,7 +330,7 @@ void commandThree(string algorithm, int input_size, string output_param) {
 void commandFour(string algo1, string algo2, string input_file)
 {
     cout << "COMPARE MODE" << endl;
-    cout << "Algorithm: " << algo1 << " | " << algo2;
+    cout << "Algorithm: " << algo1 << " | " << algo2 << endl;
 
     int a[500000], n;
     readFromFile(a, n, input_file);

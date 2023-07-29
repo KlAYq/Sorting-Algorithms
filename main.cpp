@@ -26,6 +26,8 @@ int main(int argc, char *argv[])
             commandTwo(argv[2], atoi(argv[3]), argv[4], argv[5]);
         else if (strcmp(argv[1], "-c") == 0)
             commandFive(argv[2], argv[3], atoi(argv[4]), argv[5]);
+        else
+            cout << "Unknown Command!";
     }
     else
         cout << "Unkown command!";
