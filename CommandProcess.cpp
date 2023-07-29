@@ -1,6 +1,5 @@
 // C++ program to illustrate command line arguments
 #include <iostream>
-#include <cstdlib>
 #include <cstring>
 #include <fstream> // for file I/O
 #include <ctime> // for time measurement
@@ -270,7 +269,7 @@ void commandThree(string algorithm, int input_size, string output_param)
     else if (output_param == "-time")
         comp = false;
 
-    cout << "Input order: Randomize" << endl;
+    cout << "Input order: Randomized" << endl;
     cout << "---------------------------" << endl;
 
     if (timer)
