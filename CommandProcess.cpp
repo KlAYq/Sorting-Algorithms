@@ -207,6 +207,13 @@ void commandOne(string algorithm, string input_file, string output_param)
         sort_with_counter(a, n, algorithm, count);
         cout << "Comparisons: " << count << endl;
     }
+    cout << endl;
+
+    ofstream ofs("output.txt");
+    ofs << n << endl;
+    for (int i = 0; i < n; i++)
+        ofs << a[i] << " ";
+    ofs.close();
 }
 
 void commandTwo(string algorithm, int input_size, string input_order, string input_param)
@@ -241,6 +248,12 @@ void commandTwo(string algorithm, int input_size, string input_order, string inp
         cout << "Comparisons: " << count << endl;
     }
     cout << endl;
+
+    ofstream ofs("output.txt");
+    ofs << input_size << endl;
+    for (int i = 0; i < input_size; i++)
+        ofs << a[i] << " ";
+    ofs.close();
 }
 
 void commandThree(string algorithm, int input_size, string output_param)
